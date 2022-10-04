@@ -1,5 +1,5 @@
 
-export type Dialect = 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql';
+export type Dialect = 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'ibmi' | 'snowflake';
 
 export interface Options {
   dialect: Dialect;

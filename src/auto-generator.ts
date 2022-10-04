@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { ColumnDescription } from "sequelize/types";
+import { ColumnDescription } from "@sequelize/core";
 import { DialectOptions, FKSpec } from "./dialects/dialect-options";
 import { AutoOptions, CaseFileOption, CaseOption, Field, IndexSpec, LangOption, makeIndent, makeTableName, pluralize, qNameJoin, qNameSplit, recase, Relation, singularize, TableData, TSField } from "./types";
 
@@ -44,10 +44,10 @@ export class AutoGenerator {
     const sp = this.space[1];
 
     if (this.options.lang === 'ts') {
-      header += "import * as Sequelize from 'sequelize';\n";
-      header += "import { DataTypes, Model, Optional } from 'sequelize';\n";
+      header += "import * as Sequelize from '@sequelize/core';\n";
+      header += "import { DataTypes, Model, Optional } from '@sequelize/core';\n";
     } else if (this.options.lang === 'es6') {
-      header += "const Sequelize = require('sequelize');\n";
+      header += "const Sequelize = require('@sequelize/core');\n";
       header += "module.exports = (sequelize, DataTypes) => {\n";
       header += sp + "return #TABLE#.init(sequelize, DataTypes);\n";
       header += "}\n\n";
@@ -59,7 +59,7 @@ export class AutoGenerator {
         header += sp + "return super.init({\n";
       }
     } else if (this.options.lang === 'esm') {
-      header += "import _sequelize from 'sequelize';\n";
+      header += "import _sequelize from '@sequelize/core';\n";
       header += "const { Model, Sequelize } = _sequelize;\n\n";
       header += "export default class #TABLE# extends Model {\n";
       header += sp + "static init(sequelize, DataTypes) {\n";
@@ -69,7 +69,7 @@ export class AutoGenerator {
         header += sp + "return super.init({\n";
       }
     } else {
-      header += "const Sequelize = require('sequelize');\n";
+      header += "const Sequelize = require('@sequelize/core');\n";
       header += "module.exports = function(sequelize, DataTypes) {\n";
       header += sp + "return sequelize.define('#TABLE#', {\n";
     }
@@ -320,8 +320,8 @@ export class AutoGenerator {
         if (this.dialect.name === "mssql" && defaultVal && defaultVal.toLowerCase() === '(newid())') {
           defaultVal = null as any; // disable adding "default value" attribute for UUID fields if generating for MS SQL
         }
-        if (this.dialect.name === "mssql" && (["(NULL)", "NULL"].includes(defaultVal) || typeof defaultVal === "undefined")) {
-          defaultVal = null as any; // Override default NULL in MS SQL to javascript null
+        if (this.dialect.name === ("mssql" || "db2" || "ibmi") && (["(NULL)", "NULL"].includes(defaultVal) || typeof defaultVal === "undefined")) {
+          defaultVal = null as any; // Override default NULL in MS SQL / db2 / IBMi to javascript null
         }
 
         if (defaultVal === null || defaultVal === undefined) {

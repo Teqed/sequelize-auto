@@ -1,7 +1,7 @@
 import _ from "lodash";
 import { check as isReserved } from "reserved-words";
-import { Utils } from "sequelize";
-import { ColumnDescription, Dialect } from "sequelize/types";
+import { Utils } from "@sequelize/core";
+import { ColumnDescription, Dialect } from "@sequelize/core";
 import { FKSpec } from "./dialects/dialect-options";
 
 export interface Table {

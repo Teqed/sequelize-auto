@@ -6,27 +6,38 @@
 
 Automatically generate models for [SequelizeJS](https://github.com/sequelize/sequelize) via the command line.
 
+## Fork
+This upgrades the `sequelize` dependency for the v7 alpha of `@sequelize/core`.
+
+Three new dialects have been added:
+
+Dialect | Tested | Error-free
+---|---|---
+ibmi | :heavy_check_mark: | ❌
+db2 | ❌ | ❌
+snowflake | ❌ | ❌
+
 ## Install
 
-    npm install sequelize-auto
+    npx @teqed/sequelize-auto@latest
 
 ## Prerequisites
 
-You will need to install `sequelize`; it's no longer installed by `sequelize-auto`.
+You will need to install `@sequelize/core`; it's no longer installed by `sequelize-auto`.
 
 You will need to install the correct dialect binding before using sequelize-auto.
 
 Dialect | Install
 ---|---
-MySQL/MariaDB | `npm install sequelize mysql2`
-Postgres | `npm install sequelize pg pg-hstore`
-Sqlite | `npm install sequelize sqlite3`
-MSSQL | `npm install sequelize tedious`
+MySQL/MariaDB | `npm install @sequelize/core mysql2`
+Postgres | `npm install @sequelize/core pg pg-hstore`
+Sqlite | `npm install @sequelize/core sqlite3`
+MSSQL | `npm install @sequelize/core tedious`
 
 
 ## Usage
 
-    sequelize-auto -h <host> -d <database> -u <user> -x [password] -p [port]  --dialect [dialect] -c [/path/to/config] -o [/path/to/models] -t [tableName]
+    npx sequelize-auto -h <host> -d <database> -u <user> -x [password] -p [port]  --dialect [dialect] -c [/path/to/config] -o [/path/to/models] -t [tableName]
 ```
 Options:
     --help               Show help                                   [boolean]
@@ -83,7 +94,7 @@ Options:
 
 ## Example
 
-    sequelize-auto -o "./models" -d sequelize_auto_test -h localhost -u my_username -p 5432 -x my_password -e postgres
+    npx sequelize-auto -o "./models" -d sequelize_auto_test -h localhost -u my_username -p 5432 -x my_password -e postgres
 
 Produces a file/files such as `./models/User.js` which looks like:
 
@@ -122,7 +133,7 @@ module.exports = function(sequelize, DataTypes) {
 Sequelize-auto also generates an initialization file, `./models/init-models.js`, which contains the code to load each model definition into Sequelize:
 
 ```js
-var DataTypes = require("sequelize").DataTypes;
+var DataTypes = require("@sequelize/core").DataTypes;
 var _User = require("./User");
 var _Product = require("./Product");
 
@@ -170,7 +181,7 @@ The TypeScript model classes are created as described in the [Sequelize manual](
 Example model class, `order.ts`:
 
 ```js
-import Sequelize, { DataTypes, Model, Optional } from 'sequelize';
+import Sequelize, { DataTypes, Model, Optional } from '@sequelize/core';
 import type { Customer, CustomerId } from './customer';
 import type { OrderItem, OrderItemId } from './order_item';
 
@@ -266,7 +277,7 @@ export class Order extends Model<OrderAttributes, OrderCreationAttributes> imple
 Example `init-models.ts`:
 
 ```js
-import { Sequelize } from "sequelize";
+import { Sequelize } from "@sequelize/core";
 import { Customer, CustomerAttributes, CustomerCreationAttributes } from "./customer";
 import { Order, OrderAttributes, OrderCreationAttributes } from "./order";
 import { OrderItem, OrderItemAttributes, OrderItemCreationAttributes } from "./order_item";
@@ -374,7 +385,7 @@ Or you can create the `sequelize` instance first, using a [connection string](ht
 and then pass it to SequelizeAuto:
 ```js
 const SequelizeAuto = require('sequelize-auto');
-const Sequelize = require('sequelize');
+const Sequelize = require('@sequelize/core');
 
 // const sequelize = new Sequelize('sqlite::memory:');
 const sequelize = new Sequelize('postgres://user:pass@example.com:5432/dbname');

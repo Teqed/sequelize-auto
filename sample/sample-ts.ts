@@ -1,4 +1,4 @@
-import { Sequelize } from "sequelize";
+import { Sequelize } from "@sequelize/core";
 import config from "./config";
 import { initModels, Order, OrderAttributes, OrderCreationAttributes } from "./models/init-models";
 

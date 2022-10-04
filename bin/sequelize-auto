@@ -31,7 +31,7 @@ const argv = require('yargs')
     alias: 'x'
   })
   .option('port', {
-    description: 'Port number for database (not for sqlite). Ex: MySQL/MariaDB: 3306, Postgres: 5432, MSSQL: 1433',
+    description: 'Port number for database (not for sqlite). Ex: MySQL/MariaDB: 3306, Postgres: 5432, MSSQL/db2/IBMi: 1433, Snowflake: 443',
     type: 'number',
     alias: 'p'
   })
@@ -46,7 +46,7 @@ const argv = require('yargs')
     alias: 'o'
   })
   .option('dialect', {
-    description: "The dialect/engine that you're using: postgres, mysql, sqlite, mssql",
+    description: "The dialect/engine that you're using: postgres, mysql, sqlite, mssql, db2, ibmi, snowflake",
     type: 'string',
     alias: 'e'
   })
@@ -140,10 +140,14 @@ const argv = require('yargs')
 
 function getDefaultPort(dialect) {
   switch (dialect.toLowerCase()) {
+    case 'db2':
+    case 'ibmi':
     case 'mssql':
       return 1433;
     case 'postgres':
       return 5432;
+    case 'snowflake':
+      return 443;
     default:
       return 3306;
   }

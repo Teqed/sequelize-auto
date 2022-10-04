@@ -1,6 +1,6 @@
 
 import _ from "lodash";
-import { Dialect, Sequelize } from "sequelize";
+import { Dialect, Sequelize } from "@sequelize/core";
 import { AutoBuilder } from "./auto-builder";
 import { AutoGenerator } from "./auto-generator";
 import { AutoRelater } from "./auto-relater";
@@ -16,7 +16,7 @@ export class SequelizeAuto {
     if (options && options.dialect === 'sqlite' && !options.storage && database) {
       options.storage = database as string;
     }
-    if (options && options.dialect === 'mssql') {
+    if (options && options.dialect === ('mssql' || 'db2' || 'ibmi')) {
       // set defaults for tedious, to silence the warnings
       options.dialectOptions = options.dialectOptions || {};
       options.dialectOptions.options = options.dialectOptions.options || {};
@@ -84,10 +84,14 @@ export class SequelizeAuto {
 
   getDefaultPort(dialect?: Dialect) {
     switch (dialect) {
+      case 'db2':
+      case 'ibmi':
       case 'mssql':
         return 1433;
       case 'postgres':
         return 5432;
+      case 'snowflake':
+        return 443;
       default:
         return 3306;
     }
