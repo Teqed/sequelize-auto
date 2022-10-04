@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+const Sequelize = require('@sequelize/core');
 const path = require('path');
 const config = require(path.join(__dirname, 'config'));
 const fs = require('fs');

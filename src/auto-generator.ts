@@ -47,7 +47,7 @@ export class AutoGenerator {
       header += "import * as Sequelize from '@sequelize/core';\n";
       header += "import { DataTypes, Model, Optional } from '@sequelize/core';\n";
     } else if (this.options.lang === 'es6') {
-      header += "const Sequelize = require('sequelize');\n";
+      header += "const Sequelize = require('@sequelize/core');\n";
       header += "module.exports = (sequelize, DataTypes) => {\n";
       header += sp + "return #TABLE#.init(sequelize, DataTypes);\n";
       header += "}\n\n";
@@ -69,7 +69,7 @@ export class AutoGenerator {
         header += sp + "return super.init({\n";
       }
     } else {
-      header += "const Sequelize = require('sequelize');\n";
+      header += "const Sequelize = require('@sequelize/core');\n";
       header += "module.exports = function(sequelize, DataTypes) {\n";
       header += sp + "return sequelize.define('#TABLE#', {\n";
     }
