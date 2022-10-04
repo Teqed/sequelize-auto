@@ -5,7 +5,7 @@ and using that model to perform a query and update.
 
 The sample uses the "northwind" database, a simple model with only 5 tables.
 
-Scripts are provided (in the [dbscripts](./dbscripts) directory) to create the database schema and 
+Scripts are provided (in the [dbscripts](./dbscripts) directory) to create the database schema and
 load it with data.
 
 ## Steps
@@ -13,7 +13,7 @@ load it with data.
 ### 1. Create Database
 
 Go to the [dbscripts](./dbscripts) directory.  Run the `{dialect}-sample-model.sql` and `{dialect}-sample-data.sql`
-scripts for your chosen database dialect (mssql, mysql, postgres, or sqlite).  
+scripts for your chosen database dialect (mssql, mysql, postgres, sqlite, db2, or snowflake).
 
 If using sqlite, you can use the provided node script:
 
@@ -45,7 +45,7 @@ If using TypeScript, compile the TypeScript sample app and the models:
 
 ### 5. Run the app
 
-Run the sample app.  For TypeScript, it's 
+Run the sample app.  For TypeScript, it's
 
     node sample-ts
 

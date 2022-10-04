@@ -1,8 +1,8 @@
 import _ from "lodash";
 import { addTicks, DialectOptions, FKRow, makeCondition } from "./dialect-options";
 
-export const mssqlOptions: DialectOptions = {
-  name: 'mssql',
+export const db2Options: DialectOptions = {
+  name: 'db2',
   hasSchema: true,
   /**
    * Generates an SQL query that returns all foreign keys of a table.
@@ -100,12 +100,12 @@ export const mssqlOptions: DialectOptions = {
    */
   isSerialKey: (record: FKRow) => {
     return (
-      _.isObject(record) && mssqlOptions.isPrimaryKey(record) && (_.has(record, 'is_identity') && record.is_identity)
+      _.isObject(record) && db2Options.isPrimaryKey(record) && (_.has(record, 'is_identity') && record.is_identity)
     );
   },
   /**
    * Override Sequelize's method for showing all tables to allow schema support.
-   * See sequelize/lib/dialects/mssql/query-generator.js:showTablesQuery()
+   * See sequelize/lib/dialects/db2/query-generator.js:showTablesQuery()
    * @param {String} schemaName Optional. The schema from which to list tables.
    * @return {String}
    */
@@ -123,7 +123,7 @@ export const mssqlOptions: DialectOptions = {
                   ${makeCondition("TABLE_SCHEMA", schemaName)}`;
   },
 
-  /** Sequelize "describeTable" doesn't include precision and scale in mssql */
+  /** Sequelize "describeTable" doesn't include precision and scale in db2 */
   showPrecisionQuery: (tableName: string, schemaName?: string) => {
     return `SELECT COLUMN_NAME AS column_name, NUMERIC_PRECISION AS numeric_precision, NUMERIC_SCALE AS numeric_scale
     FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '${tableName}'` + (!schemaName ? '' : ` AND TABLE_SCHEMA = '${schemaName}'`);

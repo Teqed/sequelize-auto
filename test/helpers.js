@@ -8,7 +8,7 @@ module.exports = {
   views: false, // true to test generating models from views
 
   isSnakeTables() {
-    // For mysql+innodb on Windows, table names are all lowercase, so we use snake_case to preserve word boundaries 
+    // For mysql+innodb on Windows, table names are all lowercase, so we use snake_case to preserve word boundaries
     // then convert back to UpperCamelCase (PascalCase) for file and class names (history_logs -> HistoryLogs) so tests pass
     const dialect = this.getTestDialect();
     return (dialect == 'mysql');
@@ -25,8 +25,8 @@ module.exports = {
           username: { type: Sequelize.STRING },
           touchedAt: { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
           aNumber: { type: Sequelize.INTEGER, comment: 'Dev\'s "fix"' },
-          bNumber: { 
-            type: Sequelize.INTEGER, 
+          bNumber: {
+            type: Sequelize.INTEGER,
             comment: 'B Numbér',
             defaultValue: 42
           },
@@ -184,7 +184,7 @@ module.exports = {
       sequelizeOptions.native = true;
     }
 
-    if (process.env.DIALECT === 'mssql') {
+    if (process.env.DIALECT === ('mssql' || 'db2' || 'snowflake')) {
       // set defaults for tedious, to silence the warnings
       sequelizeOptions.dialectOptions = { options: { trustServerCertificate: true, enableArithAbort: true }};
     }
@@ -288,6 +288,8 @@ module.exports = {
       postgres: 'CREATE OR REPLACE FUNCTION blah() RETURNS trigger AS $$ BEGIN RETURN NEW; END; $$ LANGUAGE plpgsql; \
                  CREATE TRIGGER "' + tableName + '_Trigger" AFTER INSERT ON "' + tableName + '" WHEN (1=0) EXECUTE PROCEDURE blah(1);',
       mssql:    'CREATE TRIGGER ' + tableName + '_Trigger ON ' + tableName + ' AFTER INSERT AS BEGIN SELECT 1 WHERE 1=0; END;',
+      db2:    'CREATE TRIGGER ' + tableName + '_Trigger ON ' + tableName + ' AFTER INSERT AS BEGIN SELECT 1 WHERE 1=0; END;',
+      snowflake:    'CREATE TRIGGER ' + tableName + '_Trigger ON ' + tableName + ' AFTER INSERT AS BEGIN SELECT 1 WHERE 1=0; END;',
       sqlite:   'CREATE TRIGGER IF NOT EXISTS ' + tableName + '_Trigger AFTER INSERT ON ' + tableName + ' BEGIN SELECT 1 WHERE 1=0; END;'
     }[this.getTestDialect()];
 
@@ -302,6 +304,8 @@ module.exports = {
       mysql:    'CREATE OR REPLACE VIEW v_history AS SELECT aRandomId FROM ' + tableName + ';',
       postgres: 'CREATE OR REPLACE VIEW "VHistory" AS SELECT "aRandomId" FROM "' + tableName + '";',
       mssql:    'CREATE OR ALTER VIEW VHistory AS SELECT aRandomId FROM ' + tableName + ';',
+      db2:    'CREATE OR ALTER VIEW VHistory AS SELECT aRandomId FROM ' + tableName + ';',
+      snowflake:    'CREATE OR ALTER VIEW VHistory AS SELECT aRandomId FROM ' + tableName + ';',
       sqlite:   'CREATE VIEW IF NOT EXISTS "VHistory" AS SELECT aRandomId FROM ' + tableName + ';'
     }[this.getTestDialect()];
 
@@ -315,6 +319,8 @@ module.exports = {
       mysql:    'DROP VIEW IF EXISTS v_history;',
       postgres: 'DROP VIEW IF EXISTS "VHistory";',
       mssql:    'DROP VIEW IF EXISTS VHistory;',
+      db2:    'DROP VIEW IF EXISTS VHistory;',
+      snowflake:    'DROP VIEW IF EXISTS VHistory;',
       sqlite:   'DROP VIEW IF EXISTS "VHistory";'
     }[this.getTestDialect()];
 

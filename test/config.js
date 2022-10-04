@@ -48,5 +48,21 @@ module.exports = {
     password: process.env.MSSQL_PASS,
     host: process.env.MSSQL_HOST,
     port: process.env.MSSQL_PORT
+  },
+
+  db2: {
+    database: process.env.DB2_NAME,
+    username: process.env.DB2_NAME,
+    password: process.env.DB2_NAME,
+    host: process.env.DB2_NAME,
+    port: process.env.DB2_NAME
+  },
+
+  snowflake: {
+    database: process.env.SNOWFLAKE_NAME,
+    username: process.env.SNOWFLAKE_NAME,
+    password: process.env.SNOWFLAKE_NAME,
+    host: process.env.SNOWFLAKE_NAME,
+    port: process.env.SNOWFLAKE_NAME
   }
 }

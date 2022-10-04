@@ -58,7 +58,7 @@ export class AutoBuilder {
     // * objects with two properties table_name and table_schema
     // * objects with two properties tableName and tableSchema
     // * objects with a single name property
-    // The first happens for dialects which support schemas (e.g. mssql, postgres).
+    // The first happens for dialects which support schemas (e.g. mssql, postgres, db2, snowflake).
     // The second happens for dialects which do not support schemas (e.g. sqlite).
 
     let tables = _.map(tableResult, t => {

@@ -41,5 +41,23 @@ const postgres = {
   autoOptions: { dialect: 'postgres', ...options }
 };
 
+// db2
+const db2 = {
+  dbname: 'Northwind',
+  user: 'db2',
+  pass: 'db2',
+  options: { dialect: 'db2' },
+  autoOptions: { dialect: 'db2', ...options }
+};
+
+// snowflake
+const snowflake = {
+  dbname: 'Northwind',
+  user: 'snowflake',
+  pass: 'snowflake',
+  options: { dialect: 'snowflake' },
+  autoOptions: { dialect: 'snowflake', ...options }
+};
+
 // Change to export appropriate config for your database
 module.exports = sqlite;
