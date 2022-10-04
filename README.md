@@ -19,7 +19,7 @@ snowflake | ❌ | ❌
 
 ## Install
 
-    npm install sequelize-auto
+    npx @teqed/sequelize-auto
 
 ## Prerequisites
 
@@ -37,7 +37,7 @@ MSSQL | `npm install @sequelize/core tedious`
 
 ## Usage
 
-    sequelize-auto -h <host> -d <database> -u <user> -x [password] -p [port]  --dialect [dialect] -c [/path/to/config] -o [/path/to/models] -t [tableName]
+    npx sequelize-auto -h <host> -d <database> -u <user> -x [password] -p [port]  --dialect [dialect] -c [/path/to/config] -o [/path/to/models] -t [tableName]
 ```
 Options:
     --help               Show help                                   [boolean]
@@ -94,7 +94,7 @@ Options:
 
 ## Example
 
-    sequelize-auto -o "./models" -d sequelize_auto_test -h localhost -u my_username -p 5432 -x my_password -e postgres
+    npx sequelize-auto -o "./models" -d sequelize_auto_test -h localhost -u my_username -p 5432 -x my_password -e postgres
 
 Produces a file/files such as `./models/User.js` which looks like:
 
