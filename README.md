@@ -19,7 +19,7 @@ snowflake | ❌ | ❌
 
 ## Install
 
-    npx @teqed/sequelize-auto
+    npx @teqed/sequelize-auto@latest
 
 ## Prerequisites
 
