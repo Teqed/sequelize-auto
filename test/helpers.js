@@ -247,7 +247,7 @@ module.exports = {
 
   getSupportedDialects: function() {
     return fs
-      .readdirSync(path.join(__dirname, '..', 'node_modules', 'sequelize', 'lib', 'dialects'))
+      .readdirSync(path.join(__dirname, '..', 'node_modules', '@sequelize/core', 'lib', 'dialects'))
       .filter(function(file) {
         return file.indexOf('.js') === -1 && file.indexOf('abstract') === -1;
       });
