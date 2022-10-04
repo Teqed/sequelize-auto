@@ -102,6 +102,25 @@ describe(helpers.getTestDialectTeaser('sequelize-auto dialects'), function() {
       done();
     });
 
+    it('ibmi', function(done) {
+      var query = dialects.ibmi.getForeignKeysQuery('mytable_d', 'mydatabase_d');
+      expect(query).to.include("TABLE_NAME = 'mytable_d'");
+      expect(query).to.include("TABLE_SCHEMA = 'mydatabase_d'");
+
+      query = dialects.ibmi.getForeignKeysQuery('mytable_d', null);
+      expect(query).to.include("TABLE_NAME = 'mytable_d'");
+      expect(query).to.not.include("mydatabase_d");
+
+      query = dialects.ibmi.countTriggerQuery("mytable_d", "mydatabase_d");
+      expect(query).to.include("SELECT COUNT(0) AS trigger_count");
+      expect(query).to.include("object_id = OBJECT_ID('mydatabase_d.mytable_d')");
+
+      query = dialects.ibmi.countTriggerQuery("mytable_d", null);
+      expect(query).to.include("object_id = OBJECT_ID('mytable_d')");
+
+      done();
+    });
+
     it('snowflake', function(done) {
       var query = dialects.snowflake.getForeignKeysQuery('mytable_d', 'mydatabase_d');
       expect(query).to.include("TABLE_NAME = 'mytable_d'");

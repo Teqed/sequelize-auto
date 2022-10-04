@@ -16,7 +16,7 @@ export class SequelizeAuto {
     if (options && options.dialect === 'sqlite' && !options.storage && database) {
       options.storage = database as string;
     }
-    if (options && options.dialect === ('mssql' || 'db2')) {
+    if (options && options.dialect === ('mssql' || 'db2' || 'ibmi')) {
       // set defaults for tedious, to silence the warnings
       options.dialectOptions = options.dialectOptions || {};
       options.dialectOptions.options = options.dialectOptions.options || {};
@@ -85,6 +85,7 @@ export class SequelizeAuto {
   getDefaultPort(dialect?: Dialect) {
     switch (dialect) {
       case 'db2':
+      case 'ibmi':
       case 'mssql':
         return 1433;
       case 'postgres':

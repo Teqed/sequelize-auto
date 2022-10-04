@@ -13,7 +13,7 @@ load it with data.
 ### 1. Create Database
 
 Go to the [dbscripts](./dbscripts) directory.  Run the `{dialect}-sample-model.sql` and `{dialect}-sample-data.sql`
-scripts for your chosen database dialect (mssql, mysql, postgres, sqlite, db2, or snowflake).
+scripts for your chosen database dialect (mssql, mysql, postgres, sqlite, db2, ibmi, or snowflake).
 
 If using sqlite, you can use the provided node script:
 

@@ -93,7 +93,7 @@ describe(helpers.getTestDialectTeaser('sequelize-auto generate'), function() {
               });
             } else if (self.sequelize.options.dialect === 'sqlite') {
               expect(stdout.indexOf("FROM `sqlite_master` WHERE type='table'")).to.be.at.above(-1);
-            } else if (self.sequelize.options.dialect === ('mssql' || 'db2' || 'snowflake')) {
+            } else if (self.sequelize.options.dialect === ('mssql' || 'db2' || 'snowflake' || 'ibmi')) {
               expect(stdout.indexOf('SELECT TABLE_NAME AS table_name, TABLE_SCHEMA AS table_schema FROM INFORMATION_SCHEMA.TABLES')).to.be.at.above(-1);
               testTables.forEach(function(tbl) {
                 expect(stdout.indexOf(`TABLE_NAME = '${tbl}'`)).to.be.at.above(-1);
@@ -206,7 +206,7 @@ describe(helpers.getTestDialectTeaser('sequelize-auto generate'), function() {
         expect(raw.bNumber.defaultValue).to.be.equal(42);
         const dateDefault = JSON.stringify(raw.dateWithDefault.defaultValue);
         const databaseMajorVersion = +((self.sequelize.options.databaseVersion || '').split('.')[0]);
-        expect(dateDefault).to.be.equal(dialect == ('mssql' || 'db2' || 'snowflake') ? '{"fn":"getdate","args":[]}' :
+        expect(dateDefault).to.be.equal(dialect == ('mssql' || 'db2' || 'ibmi' || 'snowflake') ? '{"fn":"getdate","args":[]}' :
           (dialect == 'postgres' && databaseMajorVersion < 10) ? '{"fn":"now","args":[]}' :
           '{"val":"CURRENT_TIMESTAMP"}');
         done();

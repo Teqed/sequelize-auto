@@ -4,6 +4,7 @@ import { postgresOptions } from "./postgres";
 import { sqliteOptions } from "./sqlite";
 import { db2Options } from "./db2";
 import { snowflakeOptions } from "./snowflake";
+import { ibmiOptions } from "./ibmi";
 import { DialectOptions } from "./dialect-options";
 import { Dialect } from "@sequelize/core";
 
@@ -14,5 +15,6 @@ export const dialects: { [name in Dialect]: DialectOptions } = {
   postgres: postgresOptions,
   sqlite: sqliteOptions,
   db2: db2Options,
-  snowflake: snowflakeOptions
+  snowflake: snowflakeOptions,
+  ibmi: ibmiOptions
 };

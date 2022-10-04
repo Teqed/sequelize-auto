@@ -50,6 +50,15 @@ const db2 = {
   autoOptions: { dialect: 'db2', ...options }
 };
 
+// ibmi
+const ibmi = {
+  dbname: 'Northwind',
+  user: 'ibmi',
+  pass: 'ibmi',
+  options: { dialect: 'ibmi' },
+  autoOptions: { dialect: 'ibmi', ...options }
+};
+
 // snowflake
 const snowflake = {
   dbname: 'Northwind',

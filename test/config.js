@@ -52,17 +52,25 @@ module.exports = {
 
   db2: {
     database: process.env.DB2_NAME,
-    username: process.env.DB2_NAME,
-    password: process.env.DB2_NAME,
-    host: process.env.DB2_NAME,
-    port: process.env.DB2_NAME
+    username: process.env.DB2_USER,
+    password: process.env.DB2_PASS,
+    host: process.env.DB2_HOST,
+    port: process.env.DB2_PORT
+  },
+
+  ibmi: {
+    database: process.env.IBMI_NAME,
+    username: process.env.IBMI_USER,
+    password: process.env.IBMI_PASS,
+    host: process.env.IBMI_HOST,
+    port: process.env.IBMI_PORT
   },
 
   snowflake: {
     database: process.env.SNOWFLAKE_NAME,
-    username: process.env.SNOWFLAKE_NAME,
-    password: process.env.SNOWFLAKE_NAME,
-    host: process.env.SNOWFLAKE_NAME,
-    port: process.env.SNOWFLAKE_NAME
+    username: process.env.SNOWFLAKE_USER,
+    password: process.env.SNOWFLAKE_PASS,
+    host: process.env.SNOWFLAKE_HOST,
+    port: process.env.SNOWFLAKE_PORT
   }
 }
