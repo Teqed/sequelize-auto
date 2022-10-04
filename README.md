@@ -12,16 +12,16 @@ Automatically generate models for [SequelizeJS](https://github.com/sequelize/seq
 
 ## Prerequisites
 
-You will need to install `sequelize`; it's no longer installed by `sequelize-auto`.
+You will need to install `@sequelize/core`; it's no longer installed by `sequelize-auto`.
 
 You will need to install the correct dialect binding before using sequelize-auto.
 
 Dialect | Install
 ---|---
-MySQL/MariaDB | `npm install sequelize mysql2`
-Postgres | `npm install sequelize pg pg-hstore`
-Sqlite | `npm install sequelize sqlite3`
-MSSQL | `npm install sequelize tedious`
+MySQL/MariaDB | `npm install @sequelize/core mysql2`
+Postgres | `npm install @sequelize/core pg pg-hstore`
+Sqlite | `npm install @sequelize/core sqlite3`
+MSSQL | `npm install @sequelize/core tedious`
 
 
 ## Usage
@@ -122,7 +122,7 @@ module.exports = function(sequelize, DataTypes) {
 Sequelize-auto also generates an initialization file, `./models/init-models.js`, which contains the code to load each model definition into Sequelize:
 
 ```js
-var DataTypes = require("sequelize").DataTypes;
+var DataTypes = require("@sequelize/core").DataTypes;
 var _User = require("./User");
 var _Product = require("./Product");
 
@@ -374,7 +374,7 @@ Or you can create the `sequelize` instance first, using a [connection string](ht
 and then pass it to SequelizeAuto:
 ```js
 const SequelizeAuto = require('sequelize-auto');
-const Sequelize = require('sequelize');
+const Sequelize = require('@sequelize/core');
 
 // const sequelize = new Sequelize('sqlite::memory:');
 const sequelize = new Sequelize('postgres://user:pass@example.com:5432/dbname');
