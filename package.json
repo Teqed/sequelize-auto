@@ -50,6 +50,8 @@
     "test-mysql": "cross-env DEBUG='sequelize-auto:*' DIALECT=mysql nyc mocha",
     "test-sqlite": "cross-env DEBUG='sequelize-auto:*' DIALECT=sqlite nyc mocha",
     "test-mssql": "cross-env DEBUG='sequelize-auto:*' DIALECT=mssql nyc mocha",
+    "test-db2": "cross-env DEBUG='sequelize-auto:*' DIALECT=db2 nyc mocha",
+    "test-snowflake": "cross-env DEBUG='sequelize-auto:*' DIALECT=snowflake nyc mocha",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "engines": {
