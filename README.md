@@ -6,6 +6,17 @@
 
 Automatically generate models for [SequelizeJS](https://github.com/sequelize/sequelize) via the command line.
 
+## Fork
+This upgrades the `sequelize` dependency for the v7 alpha of `@sequelize/core`.
+
+Three new dialects have been added:
+
+Dialect | Tested | Error-free
+---|---|---
+ibmi | :heavy_check_mark: | ❌
+db2 | ❌ | ❌
+snowflake | ❌ | ❌
+
 ## Install
 
     npm install sequelize-auto
