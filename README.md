@@ -170,7 +170,7 @@ The TypeScript model classes are created as described in the [Sequelize manual](
 Example model class, `order.ts`:
 
 ```js
-import Sequelize, { DataTypes, Model, Optional } from 'sequelize';
+import Sequelize, { DataTypes, Model, Optional } from '@sequelize/core';
 import type { Customer, CustomerId } from './customer';
 import type { OrderItem, OrderItemId } from './order_item';
 
@@ -266,7 +266,7 @@ export class Order extends Model<OrderAttributes, OrderCreationAttributes> imple
 Example `init-models.ts`:
 
 ```js
-import { Sequelize } from "sequelize";
+import { Sequelize } from "@sequelize/core";
 import { Customer, CustomerAttributes, CustomerCreationAttributes } from "./customer";
 import { Order, OrderAttributes, OrderCreationAttributes } from "./order";
 import { OrderItem, OrderItemAttributes, OrderItemCreationAttributes } from "./order_item";

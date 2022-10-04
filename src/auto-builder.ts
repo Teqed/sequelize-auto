@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { Dialect, QueryInterface, QueryTypes, Sequelize } from "sequelize";
+import { Dialect, QueryInterface, QueryTypes, Sequelize } from "@sequelize/core";
 import { AutoOptions } from ".";
 import { ColumnElementType, ColumnPrecision, DialectOptions, FKRow, FKSpec, TriggerCount } from "./dialects/dialect-options";
 import { dialects } from "./dialects/dialects";

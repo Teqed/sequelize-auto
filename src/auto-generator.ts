@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { ColumnDescription } from "sequelize/types";
+import { ColumnDescription } from "@sequelize/core";
 import { DialectOptions, FKSpec } from "./dialects/dialect-options";
 import { AutoOptions, CaseFileOption, CaseOption, Field, IndexSpec, LangOption, makeIndent, makeTableName, pluralize, qNameJoin, qNameSplit, recase, Relation, singularize, TableData, TSField } from "./types";
 
@@ -44,8 +44,8 @@ export class AutoGenerator {
     const sp = this.space[1];
 
     if (this.options.lang === 'ts') {
-      header += "import * as Sequelize from 'sequelize';\n";
-      header += "import { DataTypes, Model, Optional } from 'sequelize';\n";
+      header += "import * as Sequelize from '@sequelize/core';\n";
+      header += "import { DataTypes, Model, Optional } from '@sequelize/core';\n";
     } else if (this.options.lang === 'es6') {
       header += "const Sequelize = require('sequelize');\n";
       header += "module.exports = (sequelize, DataTypes) => {\n";
@@ -59,7 +59,7 @@ export class AutoGenerator {
         header += sp + "return super.init({\n";
       }
     } else if (this.options.lang === 'esm') {
-      header += "import _sequelize from 'sequelize';\n";
+      header += "import _sequelize from '@sequelize/core';\n";
       header += "const { Model, Sequelize } = _sequelize;\n\n";
       header += "export default class #TABLE# extends Model {\n";
       header += sp + "static init(sequelize, DataTypes) {\n";

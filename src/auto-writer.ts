@@ -125,7 +125,7 @@ export class AutoWriter {
 
   // create the TypeScript init-models file to load all the models into Sequelize
   private createTsInitString(tables: string[], assoc: string) {
-    let str = 'import type { Sequelize } from "sequelize";\n';
+    let str = 'import type { Sequelize } from "@sequelize/core";\n';
     const sp = this.space[1];
     const modelNames: string[] = [];
     // import statements
@@ -208,7 +208,7 @@ export class AutoWriter {
 
   // create the ESM init-models file to load all the models into Sequelize
   private createESMInitString(tables: string[], assoc: string) {
-    let str = 'import _sequelize from "sequelize";\n';
+    let str = 'import _sequelize from "@sequelize/core";\n';
     str += 'const DataTypes = _sequelize.DataTypes;\n';
     const sp = this.space[1];
     const modelNames: string[] = [];

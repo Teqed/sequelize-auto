@@ -62,13 +62,11 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "@sequelize/core": "^7.0.0-alpha.10",
     "lodash": "^4.17.21",
     "mkdirp": "^1.0.4",
     "reserved-words": "^0.1.2",
     "yargs": "^16.2.0"
-  },
-  "peerDependencies": {
-    "sequelize": ">3.30.0"
   },
   "devDependencies": {
     "@types/chai": "^4.2.17",
@@ -90,7 +88,6 @@
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
     "rimraf": "^3.0.2",
-    "sequelize": "^6.11",
     "sqlite3": "5.0.2",
     "tedious": "^11.0.6",
     "typescript": "^4.2.3"

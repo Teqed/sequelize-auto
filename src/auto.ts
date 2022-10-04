@@ -1,6 +1,6 @@
 
 import _ from "lodash";
-import { Dialect, Sequelize } from "sequelize";
+import { Dialect, Sequelize } from "@sequelize/core";
 import { AutoBuilder } from "./auto-builder";
 import { AutoGenerator } from "./auto-generator";
 import { AutoRelater } from "./auto-relater";
